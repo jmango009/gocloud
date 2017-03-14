@@ -1,0 +1,25 @@
+# This is a TOML document. Boom.
+
+[windows]
+rootDir = "C:\\Users\\IBM_ADMIN\\GoglandProjects\\src\\gocloud"
+maxsizebymb_image = 10
+maxsizebymb_video = 50
+password = "admin"
+port = "8000"
+dbdebug = true
+
+[osx]
+rootDir = "/Users/mango/Work/GoglandProjects/golang/src/gocloud"
+maxsizebymb_image = 10
+maxsizebymb_video = 50
+password = "admin"
+port = "8000"
+dbdebug = true
+
+[linux]
+rootDir = ""
+maxsizebymb_image = 10
+maxsizebymb_video = 50
+password = "Welcome1"
+port = "8000"
+dbdebug = false
