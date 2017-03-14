@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Login Page | Gocloud</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="alternate icon" type="image/png" href="/i/favicon.png">
+    <link rel="stylesheet" href="/css/amazeui.min.css"/>
+    <style>
+        .header {
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 200%;
+            color: #333;
+            margin-top: 30px;
+        }
+
+        .header p {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="am-g">
+        <h1>My Gocloud</h1>
+        <p>Picture, video sharing system for mobile<br/>照片，视频记录与分享（手机版）</p>
+    </div>
+    <hr/>
+</div>
+<div class="am-g" id="loginApp">
+    <div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
+        <h3>登录</h3>
+        <hr>
+        <label for="password">密码:</label>
+        <input id="password" type="password" v-model="password">
+        <input type="submit" v-on:click="login" value="登 录" class="am-btn am-btn-primary am-btn-sm">
+        <br>
+        <hr>
+        <p>Copyright (c) 2017 Richard li. Licensed under MIT license.</p>
+    </div>
+</div>
+</body>
+<script src="/js/md5.min.js"></script>
+<script src="/js/vue.js"></script>
+<script src="/js/vue-resource.min.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#loginApp',
+        data: {
+            password: ''
+        },
+        methods: {
+            login: function () {
+                var vm = this
+                var formData = new FormData()
+                formData.append("password", md5(vm.password))
+                this.$http.post('/login', formData).then(function (response) {
+                    window.location.href = "/t/image_list.html"
+                }, function (response) {
+                    console.log('Error!:', response.data);
+                });
+            }
+
+        }
+    })
+</script>
+</html>

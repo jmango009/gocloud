@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Video List Page | Gocloud</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="alternate icon" type="image/png" href="/i/favicon.png">
+    <link rel="stylesheet" href="/css/amazeui.min.css"/>
+    <style>
+        .header {
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 200%;
+            color: #333;
+            margin-top: 30px;
+        }
+
+        .header p {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<div class="admin-content" id="videoListApp">
+
+    <div class="admin-content-body">
+        <div class="am-cf am-padding am-padding-bottom-0">
+            <div class="am-fl am-cf">
+                <strong class="am-text-primary am-text-lg">视频</strong> / <small>Gallery</small>
+            </div>
+        </div>
+
+        <hr>
+
+        <ul v-for="item in items" class="am-avg-sm-2 am-avg-md-4 am-avg-lg-6 am-margin gallery-list">
+            <li v-for="media in item.MediaInfos">
+                <video class="am-img-thumbnail am-img-bdrs am-u-sm-centered" v-bind:src="media.MediaUrl" controls="controls" />
+                    <!--<div class="gallery-title">远方 有一个地方 那里种有我们的梦想</div>-->
+                    <!--<div class="gallery-desc">2375-09-26</div>-->
+                </a>
+            </li>
+        </ul>
+
+        <!--<div class="am-margin am-cf">-->
+        <!--<hr/>-->
+        <!--<p class="am-fl">共 15 条记录</p>-->
+        <!--<ol class="am-pagination am-fr">-->
+        <!--<li class="am-disabled"><a href="#">&laquo;</a></li>-->
+        <!--<li class="am-active"><a href="#">1</a></li>-->
+        <!--<li><a href="#">2</a></li>-->
+        <!--<li><a href="#">3</a></li>-->
+        <!--<li><a href="#">4</a></li>-->
+        <!--<li><a href="#">5</a></li>-->
+        <!--<li><a href="#">&raquo;</a></li>-->
+        <!--</ol>-->
+        <!--</div>-->
+    </div>
+</div>
+<!-- Navbar -->
+<div data-am-widget="navbar" class="am-navbar am-cf am-navbar-default"
+     id="">
+    <ul class="am-navbar-nav am-cf am-avg-sm-4">
+        <li data-am-navbar-share>
+            <a href="/t/image_list.html">
+                <span class="am-icon-share-square-o"></span>
+                <span class="am-navbar-label">图片</span>
+            </a>
+        </li>
+        <li data-am-navbar-qrcode>
+            <a href="/t/video_list.html">
+                <span class="am-icon-qrcode"></span>
+                <span class="am-navbar-label">视频</span>
+            </a>
+        </li>
+        <li>
+            <a href="/t/upload_image.html">
+                <span class="am-icon-github"></span>
+                <span class="am-navbar-label">上传图片</span>
+            </a>
+        </li>
+        <li>
+            <a href="/t/upload_video.html">
+                <span class="am-icon-github"></span>
+                <span class="am-navbar-label">上传视频</span>
+            </a>
+        </li>
+    </ul>
+</div>
+</body>
+<script src="/js/vue.js"></script>
+<script src="/js/vue-resource.min.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#videoListApp',
+        data: {
+            items: null
+        },
+        created: function () {
+            this.load();
+        },
+        methods: {
+            load: function () {
+                this.$http.get('/video/all').then(function (response) {
+                    this.items = response.data.videoList
+                }, function (response) {
+                    console.log('Error!:', response.data);
+                });
+            }
+        }
+    })
+</script>
+</html>
