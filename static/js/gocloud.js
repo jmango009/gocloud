@@ -1,35 +1,3 @@
-$(function () {
-    var toolbarOptions = [
-        ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-        ['blockquote', 'code-block'],
-
-        [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-        [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-        [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-        [{ 'direction': 'rtl' }],                         // text direction
-
-        [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-
-        [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-        [{ 'font': [] }],
-        [{ 'align': [] }],
-
-        ['link', 'image', "video"],
-
-        ['clean']                                         // remove formatting button
-    ];
-
-    var quill = new Quill('.editor-container', {
-        modules: {
-            toolbar: toolbarOptions
-        },
-        placeholder: 'Compose an epic...',
-        theme: 'snow'  // or 'bubble'
-    });
-});
-
 var isIE = /msie/i.test(navigator.userAgent) && !window.opera;
 
 function imageChange(target,id) {
@@ -41,6 +9,7 @@ function imageChange(target,id) {
 
 function videoChange(target,id) {
     clearPct()
+    $('#file-list').html("");
     var filetypes =[".mp4"];
     var filemaxsize = 1024*50;//50M
     fileChange(target,filetypes,filemaxsize);

@@ -16,22 +16,14 @@ func Router() *http.ServeMux {
 	router := gin.Default()
 	gin.SetMode(gin.DebugMode)
 
-	//router.LoadHTMLGlob(filepath.Join(config.Config.TemplateDir + "/*"))
-
 	router.Use(authentication())
 
 	router.GET("/", service.GotoHome)
-
 	router.POST("/login", service.LoginPost)
-
 	router.POST("/image", service.UploadImagePost)
 	router.POST("/video", service.UploadVideoPost)
 	router.GET("/image/all", service.GetImageList)
 	router.GET("/video/all", service.GetVideoList)
-
-	//router.GET("/article", service.ArticleGet)
-	//router.GET("/article/:id", service.ArticleShow)
-	//router.POST("/article", service.ArticlePost)
 
 	rootMux := http.NewServeMux()
 	rootMux.Handle("/", router)
@@ -40,8 +32,6 @@ func Router() *http.ServeMux {
 		http.StripPrefix("/js/", http.FileServer(http.Dir(filepath.Join(config.Config.RootDir, "static/js")))))
 	rootMux.Handle("/css/",
 		http.StripPrefix("/css/", http.FileServer(http.Dir(filepath.Join(config.Config.RootDir, "static/css")))))
-	//rootMux.Handle("/ckeditor/",
-	//	http.StripPrefix("/ckeditor/", http.FileServer(http.Dir("static/ckeditor"))))
 	rootMux.Handle("/i/",
 		http.StripPrefix("/i/", http.FileServer(http.Dir(filepath.Join(config.Config.RootDir, "static/i")))))
 	rootMux.Handle("/fonts/",
