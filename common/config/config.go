@@ -14,6 +14,7 @@ var (
 	ImageDir     string
 	ThumbnailDir string
 	VideoDir     string
+	EncodedVideoDir string
 )
 
 type tomlConfig struct {
@@ -48,11 +49,13 @@ func init() {
 	ViewDir = filepath.Join(Config.RootDir, "views")
 	LogDir = filepath.Join(Config.RootDir, "logs")
 	ImageDir = filepath.Join(Config.RootDir, "files", "images")
-	ThumbnailDir = filepath.Join(Config.RootDir, "files", "thumbnails")
+	ThumbnailDir = filepath.Join(Config.RootDir, "files", "images", "thumbnails")
 	VideoDir = filepath.Join(Config.RootDir, "files", "videos")
+	EncodedVideoDir = filepath.Join(Config.RootDir, "files", "videos", "encoded")
 
 	os.MkdirAll(LogDir, os.ModePerm)
 	os.MkdirAll(ImageDir, os.ModePerm)
 	os.MkdirAll(ThumbnailDir, os.ModePerm)
 	os.MkdirAll(VideoDir, os.ModePerm)
+	os.MkdirAll(EncodedVideoDir, os.ModePerm)
 }

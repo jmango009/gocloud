@@ -15,7 +15,7 @@ var (
 func init() {
 	DB, err = gorm.Open("mysql", "root:admin@/gocloud?charset=utf8&parseTime=True&loc=Local")
 	if err != nil {
-		panic("DB can not initialized!")
+		panic("DB can not be initialized!")
 		os.Exit(1)
 	}
 

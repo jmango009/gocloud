@@ -15,7 +15,7 @@ func LoginPost(c *gin.Context) {
 	passwd_md5_bytes := md5.Sum([]byte(config.Config.Password))
 	passwd_md5_hex := hex.EncodeToString(passwd_md5_bytes[:])
 	if c.PostForm("password") != passwd_md5_hex {
-		c.Redirect(http.StatusSeeOther, "/t/login.html")
+		c.Redirect(http.StatusSeeOther, "/login.html")
 		return
 	}
 
@@ -41,6 +41,4 @@ func LoginPost(c *gin.Context) {
 	// This cookie will store the token on the client side
 	cookie := http.Cookie{Name: "Auth", Value: signedToken, Expires: expireCookie, HttpOnly: true}
 	http.SetCookie(c.Writer, &cookie)
-
-	http.Redirect(c.Writer, c.Request, "/t/image_list.html", 301)
 }

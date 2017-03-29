@@ -20,6 +20,6 @@ dbdebug = true
 rootDir = ""
 maxsizebymb_image = 10
 maxsizebymb_video = 50
-password = "Welcome1"
+password = "admin"
 port = "8000"
 dbdebug = false

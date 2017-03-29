@@ -10,26 +10,11 @@
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
     <link rel="alternate icon" type="image/png" href="/i/favicon.png">
     <link rel="stylesheet" href="/css/amazeui.min.css"/>
-    <style>
-        .header {
-            text-align: center;
-        }
-
-        .header h1 {
-            font-size: 200%;
-            color: #333;
-            margin-top: 30px;
-        }
-
-        .header p {
-            font-size: 14px;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/gocloud.css"/>
 </head>
 <body>
-<div class="admin-content" id="videoListApp">
-
-    <div class="admin-content-body">
+<div class="am-g" id="videoListApp">
+    <div class="am-u-lg-12 am-u-md-12 am-u-sm-centered">
         <div class="am-cf am-padding am-padding-bottom-0">
             <div class="am-fl am-cf">
                 <strong class="am-text-primary am-text-lg">视频</strong> / <small>Gallery</small>
@@ -38,12 +23,10 @@
 
         <hr>
 
-        <ul v-for="item in items" class="am-avg-sm-2 am-avg-md-4 am-avg-lg-6 am-margin gallery-list">
+        <ul v-for="item in items" class="am-avg-sm-1 am-avg-md-2 am-avg-lg-4 gallery-list">
             <li v-for="media in item.MediaInfos">
                 <video class="am-u-sm-centered" v-bind:src="media.MediaUrl" controls="controls" />
-                    <!--<div class="gallery-title">远方 有一个地方 那里种有我们的梦想</div>-->
-                    <!--<div class="gallery-desc">2375-09-26</div>-->
-                </a>
+                <div class="gallery-title">{{media.Description}}</div>
             </li>
         </ul>
 
@@ -67,26 +50,26 @@
      id="">
     <ul class="am-navbar-nav am-cf am-avg-sm-4">
         <li data-am-navbar-share>
-            <a href="/t/image_list.html">
-                <span class="am-icon-share-square-o"></span>
+            <a href="/image_list.html">
+                <span class="am-icon-picture-o"></span>
                 <span class="am-navbar-label">图片</span>
             </a>
         </li>
         <li data-am-navbar-qrcode>
-            <a href="/t/video_list.html">
-                <span class="am-icon-qrcode"></span>
+            <a href="/video_list.html">
+                <span class="am-icon-video-camera"></span>
                 <span class="am-navbar-label">视频</span>
             </a>
         </li>
         <li>
-            <a href="/t/upload_image.html">
-                <span class="am-icon-github"></span>
+            <a href="/upload_image.html">
+                <span class="am-icon-cloud-upload"></span>
                 <span class="am-navbar-label">上传图片</span>
             </a>
         </li>
         <li>
-            <a href="/t/upload_video.html">
-                <span class="am-icon-github"></span>
+            <a href="/upload_video.html">
+                <span class="am-icon-cloud-upload"></span>
                 <span class="am-navbar-label">上传视频</span>
             </a>
         </li>

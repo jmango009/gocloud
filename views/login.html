@@ -10,21 +10,7 @@
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
     <link rel="alternate icon" type="image/png" href="/i/favicon.png">
     <link rel="stylesheet" href="/css/amazeui.min.css"/>
-    <style>
-        .header {
-            text-align: center;
-        }
-
-        .header h1 {
-            font-size: 200%;
-            color: #333;
-            margin-top: 30px;
-        }
-
-        .header p {
-            font-size: 14px;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/gocloud.css"/>
 </head>
 <body>
 <div class="header">
@@ -62,7 +48,7 @@
                 var formData = new FormData()
                 formData.append("password", md5(vm.password))
                 this.$http.post('/login', formData).then(function (response) {
-                    window.location.href = "/t/image_list.html"
+                    window.location.href = "/image_list.html"
                 }, function (response) {
                     console.log('Error!:', response.data);
                 });

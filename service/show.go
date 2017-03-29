@@ -15,6 +15,7 @@ type MediasByDate struct {
 }
 
 type MediaInfo struct {
+	Description  string
 	ThumbnailUrl string
 	MediaUrl string
 }
@@ -27,8 +28,9 @@ func GetImageList(c *gin.Context) {
 	for _, image := range images {
 		createdDate := image.CreatedAt.Format("2006-01-02")
 		imageInfo := MediaInfo{
-			ThumbnailUrl: "/t/tn/" + image.Filename,
-			MediaUrl: "/t/img/" +  image.Filename,
+			Description: image.Description,
+			ThumbnailUrl: "/tn/" + image.Filename,
+			MediaUrl: "/img/" +  image.Filename,
 		}
 		if imageInfos, ok := imageByDateMap[createdDate]; ok {
 			imageInfos = append(imageInfos, imageInfo)
@@ -58,7 +60,8 @@ func GetVideoList(c *gin.Context) {
 	for _, video := range videos {
 		createdDate := video.CreatedAt.Format("2006-01-02")
 		imageInfo := MediaInfo{
-			MediaUrl: "/t/v/" + video.Filename,
+			Description: video.Description,
+			MediaUrl: "/v/" + video.Filename,
 		}
 		if videoInfos, ok := videoByDateMap[createdDate]; ok {
 			videoInfos = append(videoInfos, imageInfo)

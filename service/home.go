@@ -6,5 +6,5 @@ import (
 )
 
 func GotoHome(c *gin.Context) {
-	c.Redirect(http.StatusTemporaryRedirect, "/t/image_list.html")
+	c.Redirect(http.StatusTemporaryRedirect, "/image_list.html")
 }

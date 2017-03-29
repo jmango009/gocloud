@@ -10,21 +10,7 @@
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
     <link rel="alternate icon" type="image/png" href="/i/favicon.png">
     <link rel="stylesheet" href="/css/amazeui.min.css"/>
-    <style>
-        .header {
-            text-align: center;
-        }
-
-        .header h1 {
-            font-size: 200%;
-            color: #333;
-            margin-top: 30px;
-        }
-
-        .header p {
-            font-size: 14px;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/gocloud.css"/>
 </head>
 <body>
 <div class="am-g">
@@ -45,8 +31,8 @@
         <p>
             <input type="button" class="am-btn am-btn-primary am-btn-sm" value="提交" onclick="uploadVideo(this)"/>
         </p>
-        <div id="parent">
-            <div id="son"></div>
+        <div class="am-progress" style="display: none">
+            <div class="am-progress-bar" style="width: 40%">40%</div>
         </div>
 
         <br>
@@ -59,26 +45,26 @@
      id="">
     <ul class="am-navbar-nav am-cf am-avg-sm-4">
         <li data-am-navbar-share>
-            <a href="/t/image_list.html">
-                <span class="am-icon-share-square-o"></span>
+            <a href="/image_list.html">
+                <span class="am-icon-picture-o"></span>
                 <span class="am-navbar-label">图片</span>
             </a>
         </li>
         <li data-am-navbar-qrcode>
-            <a href="/t/video_list.html">
-                <span class="am-icon-qrcode"></span>
+            <a href="/video_list.html">
+                <span class="am-icon-video-camera"></span>
                 <span class="am-navbar-label">视频</span>
             </a>
         </li>
         <li>
-            <a href="/t/upload_image.html">
-                <span class="am-icon-github"></span>
+            <a href="/upload_image.html">
+                <span class="am-icon-cloud-upload"></span>
                 <span class="am-navbar-label">上传图片</span>
             </a>
         </li>
         <li>
-            <a href="/t/upload_video.html">
-                <span class="am-icon-github"></span>
+            <a href="/upload_video.html">
+                <span class="am-icon-cloud-upload"></span>
                 <span class="am-navbar-label">上传视频</span>
             </a>
         </li>

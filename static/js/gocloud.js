@@ -64,17 +64,19 @@ function fileChange(target,filetypes,filemaxsize) {
 }
 
 function clearPct() {
-    $("#son").html("");
+    $(".am-progress").hide()
+    $(".am-progress-bar").css('width', 0);
+    $(".am-progress-bar").html("");
 }
 
 function uploadVideo() {
     var video = $("#video").get(0).files[0];
-    uploadFile(video, "video", "/t/video_list.html")
+    uploadFile(video, "video", "/video_list.html")
 }
 
 function uploadImage() {
     var pic = $("#pic").get(0).files[0];
-    uploadFile(pic, "image", "/t/image_list.html")
+    uploadFile(pic, "image", "/image_list.html")
 }
 
 function uploadFile(file, type, redirectUrl) {
@@ -109,5 +111,7 @@ function onprogress(evt) {
     var loaded = evt.loaded;
     var tot = evt.total;
     var per = Math.floor(100 * loaded / tot);
-    $("#son").html(per + "%");
+    $(".am-progress").show()
+    $(".am-progress-bar").css('width', per + "%");
+    $(".am-progress-bar").html(per + "%");
 }

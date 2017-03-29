@@ -12,6 +12,8 @@ import (
 	"path/filepath"
 	"gocloud/model"
 	"gocloud/common/database"
+	"os/exec"
+	"fmt"
 )
 
 var db = database.DB
@@ -97,7 +99,43 @@ func UploadVideoPost(c *gin.Context) {
 	video.Filename = handle.Filename
 	db.Create(&video)
 
+	encodeVideo(handle.Filename)
+
 	logger.Info("uploaded file: " + handle.Filename)
+}
+
+func encodeVideo(fileName string) {
+	fileSource := filepath.Join(config.VideoDir, fileName)
+	fileDestination := filepath.Join(config.EncodedVideoDir, fileName)
+
+	out, err := exec.Command("ffmpeg", "-i", fileSource, "-s", "540x960", "-r", "15", fileDestination).Output()
+	if err != nil {
+		logger.Error("sh.Command error: %v\n", err)
+		return
+	}
+
+	logger.Info("output:(%s), err(%v)\n", string(out), err)
+
+	ok, err := checkIfFileExists(fileDestination)
+	if err != nil {
+		logger.Error("err: %v\n", err)
+		return
+	}
+	if ok == false {
+		logger.Error(fmt.Sprintf("File '%s' does not exists. Encoding failed?", fileDestination))
+		return
+	}
+}
+
+func checkIfFileExists(fileName string) (bool, error) {
+	_, err := os.Stat(fileName)
+	if os.IsNotExist(err) {
+		return false, nil
+	}
+	if err != nil {
+		return false, err
+	}
+	return true, nil
 }
 
 func checkErr(err error) {
@@ -113,6 +151,5 @@ func makeThumbnail(filename string) {
 		return
 	}
 	thumb := imaging.Resize(img, 200, 0, imaging.CatmullRom)
-
 	imaging.Save(thumb, filepath.Join(config.ThumbnailDir, filename))
 }
