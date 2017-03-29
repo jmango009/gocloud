@@ -51,7 +51,7 @@ func UploadImagePost(c *gin.Context) {
 	defer f.Close()
 	io.Copy(f, file)
 
-	go makeThumbnail(handle.Filename)
+	makeThumbnail(handle.Filename)
 
 	var image model.Image
 	c.Bind(&image)

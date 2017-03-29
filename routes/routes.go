@@ -66,8 +66,7 @@ func Router() *http.ServeMux {
 func authentication() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		urlPath := c.Request.URL.Path
-		if urlPath == "/" || strings.HasPrefix(urlPath, "/login") ||
-			strings.HasPrefix(urlPath, "/image_list") || strings.HasPrefix(urlPath, "/video_list") {
+		if !strings.HasPrefix(urlPath, "/upload") {
 			c.Next()
 			return
 		}
